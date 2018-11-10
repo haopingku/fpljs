@@ -8,9 +8,9 @@ Include by `require()`.
 For example, if we want to count the max appearence of the elements in `v` by field `a`.
 ```javascript
 let v = [
-  {a: 1, b: 2},
-  {a: 1, b: 3},
-  {a: 2, b: 3}
+  {a: 3, b: 2},
+  {a: 3, b: 3},
+  {a: 4, b: 3}
 ];
 // we want a function which finds by "a" and returns
 {
@@ -22,17 +22,20 @@ let v = [
 In a C-style code, we might have
 ```javascript
 function getMaxByA(ary) {
-  let g = {}, max = 0;
-  for (let i of ary)
+  let g = {}, maxLen = 0, maxVal;
+  for (let i of ary) {
     if (i.a in g)
       g[i.a].push(i);
     else
       g[i.a] = [i];
-  for (let i of Object.keys(g))
-    if (g[i].length > max) {
-      max = i;
+  }
+  for (let i of Object.keys(g)) {
+    if (g[i].length > maxLen) {
+      maxLen = g[i].length;
+      maxVal = i;
     }
-  return {val: max, vals: g[max], count: g[max].length};
+  }
+  return {val: maxVal, vals: g[maxVal], count: maxLen};
 }
 
 ```
