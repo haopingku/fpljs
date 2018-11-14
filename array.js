@@ -57,3 +57,14 @@ Array.prototype.uniqBy = function(f) {
     return r;
   }, [[], {}])[0];
 };
+
+Array.prototype.flat = function(n = 1) {
+  let a = Object(this);
+  return n <= 0 ? a : a.reduce((r, i) => {
+    if (Array.isArray(i))
+      r = r.concat(i.flat(n - 1));
+    else
+      r.push(i);
+    return r;
+  }, []);
+};
