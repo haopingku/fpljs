@@ -1,19 +1,19 @@
 "use strict";
 
 Array.prototype.sum = function() {
-  return Object(this).reduce((i, j) => i + j);
+  return this.reduce((i, j) => i + j);
 };
 
 Array.prototype.maxBy = function(f) {
-  return Object(this).reduce((i, j) => f(i) > f(j) ? i : j);
+  return this.reduce((i, j) => f(i) > f(j) ? i : j);
 };
 
 Array.prototype.minBy = function(f) {
-  return Object(this).reduce((i, j) => f(i) < f(j) ? i : j);
+  return this.reduce((i, j) => f(i) < f(j) ? i : j);
 };
 
 Array.prototype.groupBy = function(f) {
-  return Object(this).reduce((r, i) => {
+  return this.reduce((r, i) => {
     let k = f(i);
     if (k in r[1]) {
       let q = r[1][k].find(i => i[0] === k);
@@ -32,19 +32,19 @@ Array.prototype.groupBy = function(f) {
 };
 
 Array.prototype.any = function(f) {
-  return Object(this).reduce((r, i) => r || f(i), false);
+  return this.reduce((r, i) => r || f(i), false);
 };
 
 Array.prototype.all = function(f) {
-  return Object(this).reduce((r, i) => r && f(i), true);
+  return this.reduce((r, i) => r && f(i), true);
 };
 
 Array.prototype.countBy = function(f) {
-  return Object(this).reduce((r, i) => (f(i) ? r + 1 : r), 0);
+  return this.reduce((r, i) => (f(i) ? r + 1 : r), 0);
 };
 
 Array.prototype.uniqBy = function(f) {
-  return Object(this).reduce((r, i) => {
+  return this.reduce((r, i) => {
     let k = f(i), uniq = true;
     if (k in r[1])
       uniq = r[1][k].find(i => i === k) === undefined;
@@ -58,13 +58,16 @@ Array.prototype.uniqBy = function(f) {
   }, [[], {}])[0];
 };
 
-Array.prototype.flat = function(n = 1) {
-  let a = Object(this);
-  return n <= 0 ? a : a.reduce((r, i) => {
-    if (Array.isArray(i))
-      r = r.concat(i.flat(n - 1));
-    else
-      r.push(i);
-    return r;
-  }, []);
-};
+if (Array.prototype.flat === undefined) {
+  // to support old nodejs engine without flat function
+  Array.prototype.flat = function(n = 1) {
+    let a = this;
+    return n <= 0 ? a : a.reduce((r, i) => {
+      if (Array.isArray(i))
+        r = r.concat(i.flat(n - 1));
+      else
+        r.push(i);
+      return r;
+    }, []);
+  };
+}

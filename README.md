@@ -1,5 +1,5 @@
 # FPLJS
-This is a function programming language (FPL) programming style library for Javascript. Which is inspired by Haskell's function programming.
+This is a function programming language (FPL) programming style library for Javascript. Which is inspired by Haskell's function programming and some of functions are inspired by Ruby.
 
 ## usage
 Include by `require()`.
@@ -12,7 +12,8 @@ let v = [
   {a: 3, b: 3},
   {a: 4, b: 3}
 ];
-// we want a function which finds by "a" and returns
+// we want a function which finds the
+// max amount of "a"'s value and returns
 {
   val: 1,
   count: 2,
@@ -39,7 +40,7 @@ function getMaxByA(ary) {
 }
 
 ```
-In FPL style
+In FPL style,
 ```javascript
 function getMaxByA(a) {
   return a.groupBy(i => i.a)
@@ -47,4 +48,4 @@ function getMaxByA(a) {
     .maxBy(i => i.count);
 }
 ```
-It's more readable and the code is shorter.
+it's more readable and the code is shorter.
