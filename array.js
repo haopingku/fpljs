@@ -16,6 +16,7 @@ Array.prototype.groupBy = function(f) {
   return this.reduce((r, i) => {
     let k = f(i);
     if (k in r[1]) {
+      // handle the situation that js converts integer keys into string
       let q = r[1][k].find(i => i[0] === k);
       if (q !== undefined) {
         r[0][q[1]][1].push(i);
@@ -46,6 +47,7 @@ Array.prototype.countBy = function(f) {
 Array.prototype.uniqBy = function(f) {
   return this.reduce((r, i) => {
     let k = f(i), uniq = true;
+    // handle the situation that js converts integer keys into string
     if (k in r[1])
       uniq = r[1][k].find(i => i === k) === undefined;
     if (uniq) {
@@ -56,6 +58,24 @@ Array.prototype.uniqBy = function(f) {
     }
     return r;
   }, [[], {}])[0];
+};
+
+Array.prototype.zip = function(a) {
+  return this.reduce((r, i) => {
+    r.push([i, a[r.length]]);
+    return r;
+  }, []);
+};
+
+Array.prototype.indexed = function() {
+  return this.zip([...Array(this.length).keys()]);
+};
+
+Array.prototype.toObject = function(f) {
+  return this.reduce((r, i) => {
+    r[i[0]] = i[1];
+    return r;
+  }, {});
 };
 
 if (Array.prototype.flat === undefined) {
