@@ -1,0 +1,19 @@
+{
+  "name": "fpljs",
+  "version": "1.1.0",
+  "description": "a FPL-style library for js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/haopingku/fpljs.git"
+  },
+  "author": "haopingku",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/haopingku/fpljs/issues"
+  },
+  "homepage": "https://github.com/haopingku/fpljs#readme"
+}
