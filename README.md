@@ -2,7 +2,14 @@
 This is a function programming language (FPL) programming style library for Javascript. Which is inspired by Haskell's function programming and some of functions are inspired by Ruby.
 
 ## usage
-Include by `require()`.
+#### install
+```shell
+npm install https://github.com/haopingku/fpljs
+```
+#### use
+```javascript
+require("fpljs");
+```
 
 ## example
 For example, if we want to count the max appearence of the elements in `v` by field `a`.
