@@ -1,5 +1,9 @@
 "use strict";
 
+Object.prototype.size = function() {
+  return Object.keys(this).length;
+};
+
 Object.prototype.keys = function() {
   return Object.keys(this);
 };
